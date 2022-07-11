@@ -1,12 +1,26 @@
-﻿namespace Cliver_api.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CliverApi.Models
 {
-    public class Post
+    public class Post : BaseEntity
     {
+        public Post()
+        {
+            Tag = string.Empty;
+            Subcategory= null!;
+            Packages=  new HashSet<Package>() ;
+            Tags = new List<string>();
+        }
+
         public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Username { get; set; }
-        public string? Password { get; set; }
-        public int Amount { get; set; }
+        [Required]
+        public int SubcategoryId { get; set; }
+        public Subcategory Subcategory { get; set; }
+        public string Tag { get; set; }
+        [NotMapped]
+        public List<string> Tags { get; set; }
+        public ICollection<Package> Packages { get; set; }
 
     }
 }

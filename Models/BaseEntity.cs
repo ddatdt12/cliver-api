@@ -1,4 +1,4 @@
-﻿namespace Cliver_api.Models
+﻿namespace CliverApi.Models
 {
     public abstract class BaseEntity
     {

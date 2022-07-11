@@ -1,34 +1,27 @@
+using CliverApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cliver_api.Controllers
+namespace CliverApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<UserController> _logger;
+        private readonly DataContext _context;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger, DataContext context)
         {
             _logger = logger;
+            _context=context;
         }
 
-        [HttpPost]
-        public IEnumerable<WeatherForecast> GetTopRank(string test)
+        [HttpGet]
+        public IEnumerable<User> GetUsers()
         {
-
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            _logger.LogWarning("Something went wrong!");
+            return new List<User>();
+            //return _context.Users.ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
-using Cliver_api.Models;
+using CliverApi.Extensions;
+using CliverApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 }
 );
 
+builder.Services.ConfigureCors();
+
 var app = builder.Build();
 
 
@@ -23,8 +26,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
-
+//app.ConfigureExceptionHandler();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

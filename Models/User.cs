@@ -1,17 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cliver_api.Models
+namespace CliverApi.Models
 {
-    public class User
+    public class User : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public string? Name { get; set; }
-        public string? Username { get; set; }
-        public string? Password { get; set; }
-        public int Amount { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public long Amount { get; set; }
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Cliver_api.Models
+namespace CliverApi.Models
 {
     public class DataContext : DbContext
     {
@@ -9,7 +9,8 @@ namespace Cliver_api.Models
 
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users  => Set<User>();
+
 
         public override int SaveChanges()
         {
