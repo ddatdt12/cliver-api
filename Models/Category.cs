@@ -6,12 +6,12 @@ namespace CliverApi.Models
     {
         public Category(string name)
         {
-            Name=name;
-            Subcategories= new HashSet<Subcategory>();
+            Name = name;
+            Subcategories = new HashSet<Subcategory>();
         }
 
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Category name is required")]
         public string Name { get; set; }
 
         public ICollection<Subcategory> Subcategories { get; set; }

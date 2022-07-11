@@ -14,7 +14,6 @@ namespace CliverApi.Models
         }
 
         public int Id { get; set; }
-        [Required]
         public int SubcategoryId { get; set; }
         public Subcategory Subcategory { get; set; }
         public string Tag { get; set; }
