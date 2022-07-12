@@ -14,9 +14,8 @@ namespace CliverApi.Models
         public string Password { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public long Amount { get; set; }
-        public UserType type { get; set; }
+        public UserType Type { get; set; }
         public bool IsActived { get; set; }
-        public bool Actived { get; set; }
 
     }
 }

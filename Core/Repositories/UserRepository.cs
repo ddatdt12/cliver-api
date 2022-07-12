@@ -42,25 +42,5 @@ namespace CliverApi.Core.Repositories
             }
         }
 
-        public override async Task<bool> Delete(object id)
-        {
-            try
-            {
-                var guid = (Guid)id;
-                var exist = await dbSet.Where(x => x.Id == id)
-                                        .FirstOrDefaultAsync();
-
-                if (exist == null) return false;
-
-                dbSet.Remove(exist);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "{Repo} Delete function error", typeof(UserRepository));
-                return false;
-            }
-        }
     }
 }
