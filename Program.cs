@@ -17,18 +17,20 @@ builder.Services.AddDbContext<DataContext>(options =>
 );
 
 builder.Services.ConfigureCors();
+builder.Services.ConfigureRepository();
 
 var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
+
+app.UseSwagger();
+app.UseSwaggerUI();
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
 }
-//app.ConfigureExceptionHandler();
+app.ConfigureExceptionHandler(app.Logger);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

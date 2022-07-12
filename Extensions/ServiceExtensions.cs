@@ -1,4 +1,7 @@
-﻿namespace CliverApi.Extensions
+﻿using CliverApi.Core.IConfiguration;
+using CliverApi.Core.Repositories;
+
+namespace CliverApi.Extensions
 {
     public static class ServiceExtensions
     {
@@ -10,5 +13,9 @@
              .AllowAnyMethod()
              .AllowAnyHeader());
          });
+
+        public static void ConfigureRepository(this IServiceCollection services) =>
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
     }
 }

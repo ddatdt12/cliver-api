@@ -22,7 +22,7 @@ namespace CliverApi.Extensions
                             await context.Response.WriteAsync(new ErrorDetails()
                             {
                                 StatusCode = context.Response.StatusCode,
-                                Message = "Internal Server Error."
+                                Message = contextFeature.Error.Message ?? "Internal Server Error."
                             }.ToString());
                         }
                     });
