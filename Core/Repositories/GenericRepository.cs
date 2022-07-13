@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace CliverApi.Core.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T>  where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         internal DataContext _context;
         internal DbSet<T> dbSet;
@@ -18,22 +18,17 @@ namespace CliverApi.Core.Repositories
         }
 
 
-        public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
-        {
-            throw new NotImplementedException();
-        }
-
         public virtual async Task<IEnumerable<T>> GetAll()
         {
             return await dbSet.ToListAsync();
         }
-        public virtual async Task<T> GetById<TId>(TId id)
+        public virtual async Task<T> FindById<TId>(TId id)
         {
             return await dbSet.FindAsync(id);
         }
 
 
-        public virtual async Task<IEnumerable<T>> Get(
+        public virtual async Task<IEnumerable<T>> Find(
             Expression<Func<T, bool>>? filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             string includeProperties = "")
@@ -72,8 +67,9 @@ namespace CliverApi.Core.Repositories
             if (entityToDelete != null)
             {
                 Delete(entityToDelete);
+                return true;
             }
-            return true;
+            return false;
         }
 
         public virtual void Delete(T entityToDelete)
@@ -93,7 +89,6 @@ namespace CliverApi.Core.Repositories
         {
             throw new NotImplementedException();
         }
-
 
     }
 }

@@ -1,6 +1,16 @@
-﻿namespace CliverApi.DTOs
+﻿using static Kensa.Common.Enum;
+
+namespace CliverApi.DTOs
 {
     public class UserDto
     {
+        public Guid Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public long Amount { get; set; }
+        public UserType Type { get; set; }
+        public bool IsActived { get; set; }
     }
 }

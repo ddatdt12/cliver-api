@@ -1,33 +1,40 @@
 using CliverApi.Core.IConfiguration;
+using CliverApi.DTOs;
 using CliverApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CliverApi.Controllers
 {
     [ApiController]
-    [Route("api/users")]
-    public class UserController : ControllerBase
+    [Route("api/auth")]
+    public class AuthController : ControllerBase
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly ILogger<AuthController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserController(ILogger<UserController> logger, IUnitOfWork unitOfWork)
+        public AuthController(ILogger<AuthController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpPost]
+        public async Task<IActionResult> Login(string email, string password)
         {
-            var users = await _unitOfWork.Users.GetAll();
-            return Ok(users);
+            var user = await _unitOfWork.Users.Find(u => u.Email == email && u.Password == password);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser(Guid id)
+        [HttpPost()]
+        public async Task<IActionResult> Register(UserDto user)
         {
-            var item = await _unitOfWork.Users.FindById(id);
+            var item = await _unitOfWork.Users.Find(u => u.Email == user.Email);
 
             if (item == null)
                 return NotFound();
@@ -48,7 +55,7 @@ namespace CliverApi.Controllers
                 return CreatedAtAction("GetItem", new { user.Id }, user);
             }
 
-            return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
+            return new JsonResult("Something went wrong") { StatusCode = 500 };
         }
 
         [HttpPut("{id}")]

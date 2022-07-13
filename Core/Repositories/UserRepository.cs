@@ -10,7 +10,7 @@ namespace CliverApi.Core.Repositories
         {
 
         }
-        public override async Task<IEnumerable<User>> GetAll ()
+        public override async Task<IEnumerable<User>> GetAll()
         {
             try
             {
