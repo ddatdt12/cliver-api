@@ -1,8 +1,7 @@
 ﻿namespace CliverApi.Models
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity<T> where T : class
     {
-        public DateTime? CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public T? Id { get; set; }
     }
 }

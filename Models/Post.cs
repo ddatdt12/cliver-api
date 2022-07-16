@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CliverApi.Models
 {
-    public class Post : BaseEntity
+    public class Post : AuditEntity
     {
         public Post()
         {

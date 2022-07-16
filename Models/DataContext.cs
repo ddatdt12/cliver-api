@@ -27,7 +27,7 @@ namespace CliverApi.Models
         private void AddTimestamps()
         {
             var entities = ChangeTracker.Entries()
-                .Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+                .Where(x => x.Entity is AuditEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
             foreach (var entity in entities)
             {
@@ -35,9 +35,9 @@ namespace CliverApi.Models
 
                 if (entity.State == EntityState.Added)
                 {
-                    ((BaseEntity)entity.Entity).CreatedAt = now;
+                    ((AuditEntity)entity.Entity).CreatedAt = now;
                 }
-                ((BaseEntity)entity.Entity).UpdatedAt = now;
+                ((AuditEntity)entity.Entity).UpdatedAt = now;
             }
         }
     }

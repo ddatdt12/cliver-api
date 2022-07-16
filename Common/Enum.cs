@@ -2,7 +2,7 @@
 {
     public static class Enum
     {
-        public enum UserTypes
+        public enum UserType
         {
             Admin,
             User
@@ -11,7 +11,9 @@
         public enum JobStatus
         {
             Created,
-            User
+            Received,
+            Doing,
+            
         }
   
     }
