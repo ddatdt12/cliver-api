@@ -1,4 +1,4 @@
-﻿using CliverApi.Core.IRepositories;
+﻿using CliverApi.Core.Contracts;
 using CliverApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -14,7 +14,7 @@ namespace CliverApi.Core.Repositories
         {
             _context = context;
             dbSet = context.Set<T>();
-            _logger=logger;
+            _logger = logger;
         }
 
 
@@ -28,7 +28,7 @@ namespace CliverApi.Core.Repositories
         }
 
 
-        public virtual async Task<IEnumerable<T>> Find(
+        public virtual IQueryable<T> Find(
             Expression<Func<T, bool>>? filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             string includeProperties = "")
@@ -48,11 +48,11 @@ namespace CliverApi.Core.Repositories
 
             if (orderBy != null)
             {
-                return await orderBy(query).ToListAsync();
+                return orderBy(query);
             }
             else
             {
-                return await query.ToListAsync();
+                return query;
             }
         }
         public virtual async Task<bool> Add(T entity)

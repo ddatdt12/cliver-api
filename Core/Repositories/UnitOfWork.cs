@@ -1,5 +1,4 @@
-﻿using CliverApi.Core.IConfiguration;
-using CliverApi.Core.IRepositories;
+﻿using CliverApi.Core.Contracts;
 using CliverApi.Models;
 
 namespace CliverApi.Core.Repositories
@@ -8,15 +7,16 @@ namespace CliverApi.Core.Repositories
     {
         private readonly DataContext _context;
         private readonly ILogger _logger;
-
         public IUserRepository Users { get; private set; }
+        public IAuthRepository Auth { get; private set; }
 
-        public UnitOfWork(DataContext context, ILoggerFactory loggerFactory)
+        public UnitOfWork(DataContext context, ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("logs");
 
             Users = new UserRepository(context, _logger);
+            Auth = new AuthRepository(configuration, context, _logger);
         }
 
         public async Task CompleteAsync()

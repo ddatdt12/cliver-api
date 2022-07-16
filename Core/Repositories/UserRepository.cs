@@ -1,4 +1,4 @@
-﻿using CliverApi.Core.IRepositories;
+﻿using CliverApi.Core.Contracts;
 using CliverApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +9,20 @@ namespace CliverApi.Core.Repositories
         public UserRepository(DataContext context, ILogger logger) : base(context, logger)
         {
 
+        }
+
+
+        public async Task<User> FindUserByEmailAndPassword(string email, string password)
+        {
+            try
+            {
+                return await this.Find(u => u.Email == email && u.Password == password).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} All function error", typeof(UserRepository));
+                return null;
+            }
         }
         public override async Task<IEnumerable<User>> GetAll()
         {
@@ -42,5 +56,17 @@ namespace CliverApi.Core.Repositories
             }
         }
 
+        public async Task<User> FindByEmail(string email)
+        {
+            try
+            {
+                return await this.Find(u => u.Email == email).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} FindUserByEmail function error", typeof(UserRepository));
+                return null;
+            }
+        }
     }
 }

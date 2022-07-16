@@ -2,6 +2,6 @@
 {
     public abstract class DeleteEntity
     {
-        public DateTime DeletedAt{ get; set; }
+        public DateTime? DeletedAt{ get; set; }
     }
 }
