@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CliverApi.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace CliverApi.Models
 {
@@ -6,11 +7,18 @@ namespace CliverApi.Models
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-
+            this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
-        public DbSet<User> Users  => Set<User>();
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Post> Posts => Set<Post>();
+        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<Subcategory> Subcategories => Set<Subcategory>();
+        public DbSet<Package> Packages => Set<Package>();
 
         public override int SaveChanges()
         {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CliverApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220716034527_CreateUser")]
-    partial class CreateUser
+    [Migration("20220717110641_InitBaseEntities")]
+    partial class InitBaseEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,11 +26,13 @@ namespace CliverApi.Migrations
 
             modelBuilder.Entity("CliverApi.Models.User", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("Amount")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AvailableForWithdrawal")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -51,15 +53,30 @@ namespace CliverApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("NetIncome")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PendingClearance")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<long>("UsedFor")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UsedForPurchases")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Withdrawn")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 

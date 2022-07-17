@@ -2,6 +2,8 @@
 using CliverApi.Core.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 
 namespace CliverApi.Extensions
@@ -19,7 +21,32 @@ namespace CliverApi.Extensions
 
         public static void ConfigureRepository(this IServiceCollection services) =>
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+        public static void ConfigureSwaggerOptions(this SwaggerGenOptions options)
+        {
+            options.AddSecurityDefinition("Bearer",
+            new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Place to add JWT with Bearer",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer"
+            });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {   
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type=ReferenceType.SecurityScheme,
+                        Id="Bearer"
+                    }
+                },
+                new string[]{}
+                }
+            });
+        }
         public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(x =>

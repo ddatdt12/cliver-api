@@ -11,7 +11,6 @@ namespace CliverApi.Core.Repositories
 
         }
 
-
         public async Task<User> FindUserByEmailAndPassword(string email, string password)
         {
             try
@@ -24,6 +23,7 @@ namespace CliverApi.Core.Repositories
                 return null;
             }
         }
+
         public override async Task<IEnumerable<User>> GetAll()
         {
             try

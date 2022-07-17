@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CliverApi.Migrations
 {
-    public partial class CreateUser : Migration
+    public partial class InitBaseEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,12 +13,18 @@ namespace CliverApi.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NetIncome = table.Column<long>(type: "bigint", nullable: false),
+                    Withdrawn = table.Column<long>(type: "bigint", nullable: false),
+                    UsedFor = table.Column<long>(type: "bigint", nullable: false),
+                    UsedForPurchases = table.Column<long>(type: "bigint", nullable: false),
                     Amount = table.Column<long>(type: "bigint", nullable: false),
+                    PendingClearance = table.Column<long>(type: "bigint", nullable: false),
+                    AvailableForWithdrawal = table.Column<long>(type: "bigint", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
                     IsActived = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
