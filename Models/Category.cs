@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CliverApi.Models
 {
+    [Table("Category")]
     public class Category
     {
-        public Category(string name)
+        public Category()
         {
-            Name = name;
+            Name = string.Empty;
             Subcategories = new HashSet<Subcategory>();
         }
 

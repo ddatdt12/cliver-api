@@ -7,14 +7,18 @@
             Admin,
             User
         }
-
+        public enum PostStatus
+        {
+            Draft,
+            PendingApproval,
+            Active,
+            Paused,
+        }
         public enum JobStatus
         {
             Created,
             Received,
             Doing,
-            
         }
-  
     }
 }

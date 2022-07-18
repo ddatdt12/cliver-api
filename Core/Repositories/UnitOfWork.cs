@@ -9,16 +9,20 @@ namespace CliverApi.Core.Repositories
         private readonly ILogger _logger;
         public IUserRepository Users { get; private set; }
         public IAuthRepository Auth { get; private set; }
+        public IPostRepository Posts { get; private set; }
+        public ICategoryRepository Categories { get; private set; }
 
-        public UnitOfWork(DataContext context, ILoggerFactory loggerFactory, IConfiguration configuration)
+        public UnitOfWork(DataContext context, ILoggerFactory loggerFactory
+            , IConfiguration configuration)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("logs");
 
             Users = new UserRepository(context, _logger);
+            Posts = new PostRepository(context, _logger);
             Auth = new AuthRepository(configuration, context, _logger);
+            Categories = new CategoryRepository(context, _logger);
         }
-
         public async Task CompleteAsync()
         {
             await _context.SaveChangesAsync();
