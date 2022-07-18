@@ -59,9 +59,8 @@ namespace CliverApi.Core.Repositories
                     // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
                     ClockSkew = TimeSpan.Zero
                 }, out SecurityToken validatedToken);
-
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == "UserId").Value;
+                var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == "UserId")?.Value;
 
                 // return user id from JWT token if validation successful
                 return userId;
