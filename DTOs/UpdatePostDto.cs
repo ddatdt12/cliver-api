@@ -7,6 +7,7 @@ namespace CliverApi.DTOs
         public UpdatePostDto()
         {
         }
+        public string? Title { get; set; } = string.Empty;
         public string? Description { get; set; }
         public int? SubcategoryId { get; set; }
         public List<string>? Tags { get; set; }

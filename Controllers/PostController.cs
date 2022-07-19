@@ -4,6 +4,7 @@ using CliverApi.Core.Contracts;
 using CliverApi.DTOs;
 using CliverApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,7 +18,7 @@ namespace CliverApi.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public PostController(IUnitOfWork unitOfWork, IMapper mapper)
+        public PostController(DataContext context, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -27,7 +28,7 @@ namespace CliverApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var posts = await _unitOfWork.Posts.GetAll();
+            var posts = await _unitOfWork.Posts.Find(includeProperties: "User").ToListAsync();
 
             var postDtos = _mapper.Map<IEnumerable<Post>, IEnumerable<PostDto>>(posts);
 
@@ -51,7 +52,7 @@ namespace CliverApi.Controllers
 
         // POST api/<PostController>
         [HttpPost]
-        [ProtectRoute]
+        [Protect]
         public async Task<IActionResult> CreatePost([FromBody] CreatePostDto post)
         {
             Post p = _mapper.Map<Post>(post);

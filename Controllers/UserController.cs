@@ -10,7 +10,7 @@ namespace CliverApi.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    [ProtectRoute]
+    [Protect]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;

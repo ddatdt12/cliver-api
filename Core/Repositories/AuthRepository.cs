@@ -1,4 +1,5 @@
 ﻿using CliverApi.Core.Contracts;
+using CliverApi.Error;
 using CliverApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -34,7 +35,7 @@ namespace CliverApi.Core.Repositories
                         new Claim(ClaimTypes.Name, user.Name),
                         new Claim("UserId", user.Id.ToString())
               }),
-                Expires = DateTime.UtcNow.AddMinutes(10),
+                Expires = DateTime.UtcNow.AddDays(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

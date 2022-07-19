@@ -1,4 +1,5 @@
 using AutoMapper;
+using CliverApi.Attributes;
 using CliverApi.Core.Contracts;
 using CliverApi.DTOs;
 using CliverApi.Error;
@@ -45,6 +46,18 @@ namespace CliverApi.Controllers
             {
                 data = userDto,
                 token = token
+            });
+        }
+
+        [HttpGet]
+        [Route("verify")]
+        [Protect]
+        public IActionResult Verify()
+        {
+            var user = HttpContext.Items["User"] as User;
+            return Ok(new
+            {
+                data = user
             });
         }
 

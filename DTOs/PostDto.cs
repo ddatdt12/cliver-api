@@ -15,10 +15,11 @@ namespace CliverApi.DTOs
         }
 
         public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string UserId { get; set; } = null!;
         public PostStatus Status { get; set; }
-        public User User { get; set; } = null!;
+        public UserDto User { get; set; } = null!;
         public int SubcategoryId { get; set; }
         public Subcategory Subcategory { get; set; } = null!;
         public List<string> Tags { get; set; } = new List<string>();
