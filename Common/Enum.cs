@@ -1,4 +1,4 @@
-﻿namespace Kensa.Common
+﻿namespace CliverApi.Common
 {
     public static class Enum
     {

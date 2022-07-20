@@ -1,4 +1,4 @@
-﻿using static Kensa.Common.Enum;
+﻿using static CliverApi.Common.Enum;
 
 namespace CliverApi.DTOs
 {

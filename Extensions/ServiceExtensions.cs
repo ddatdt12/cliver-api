@@ -1,5 +1,6 @@
 ﻿using CliverApi.Core.Contracts;
 using CliverApi.Core.Repositories;
+using CliverApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -20,7 +21,7 @@ namespace CliverApi.Extensions
          });
 
         public static void ConfigureRepository(this IServiceCollection services) =>
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>().AddSingleton<IMailService, MailService>();
         public static void ConfigureSwaggerOptions(this SwaggerGenOptions options)
         {
             options.AddSecurityDefinition("Bearer",

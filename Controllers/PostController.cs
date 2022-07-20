@@ -18,7 +18,7 @@ namespace CliverApi.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public PostController(DataContext context, IUnitOfWork unitOfWork, IMapper mapper)
+        public PostController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
