@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace CliverApi.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class ProtectRoute : Attribute, IAuthorizationFilter
+    public class Protect : Attribute, IAuthorizationFilter
     {
 
         public void OnAuthorization(AuthorizationFilterContext context)

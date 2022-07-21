@@ -1,4 +1,4 @@
-﻿using static Kensa.Common.Enum;
+﻿using static CliverApi.Common.Enum;
 
 namespace CliverApi.DTOs
 {
@@ -7,9 +7,9 @@ namespace CliverApi.DTOs
         public UpdatePostDto()
         {
         }
+        public string? Title { get; set; } = string.Empty;
         public string? Description { get; set; }
         public int? SubcategoryId { get; set; }
-        public string? UserId { get; set; } = null!;
         public List<string>? Tags { get; set; }
         public List<string>? Images { get; set; }
         public string? Video { get; set; }

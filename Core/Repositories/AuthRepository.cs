@@ -1,4 +1,5 @@
 ﻿using CliverApi.Core.Contracts;
+using CliverApi.Error;
 using CliverApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -34,7 +35,7 @@ namespace CliverApi.Core.Repositories
                         new Claim(ClaimTypes.Name, user.Name),
                         new Claim("UserId", user.Id.ToString())
               }),
-                Expires = DateTime.UtcNow.AddMinutes(10),
+                Expires = DateTime.UtcNow.AddDays(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -59,9 +60,8 @@ namespace CliverApi.Core.Repositories
                     // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
                     ClockSkew = TimeSpan.Zero
                 }, out SecurityToken validatedToken);
-
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == "UserId").Value;
+                var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == "UserId")?.Value;
 
                 // return user id from JWT token if validation successful
                 return userId;

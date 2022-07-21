@@ -10,7 +10,7 @@ namespace CliverApi.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    [ProtectRoute]
+    [Protect]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
@@ -27,7 +27,11 @@ namespace CliverApi.Controllers
         public async Task<IActionResult> Get()
         {
             var users = await _unitOfWork.Users.GetAll();
-            return Ok(users);
+            var data = _mapper.Map<IEnumerable<UserDto>>(users);
+            return Ok(new
+            {
+                data = data
+            });
         }
 
         [HttpGet("{id}")]

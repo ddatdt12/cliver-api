@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Kensa.Helper
+namespace CliverApi.Helper
 {
     public class Assign
     {

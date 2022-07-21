@@ -1,4 +1,5 @@
-﻿using CliverApi.Core.Contracts;
+﻿using AutoMapper;
+using CliverApi.Core.Contracts;
 using CliverApi.Models;
 
 namespace CliverApi.Core.Repositories
@@ -13,13 +14,13 @@ namespace CliverApi.Core.Repositories
         public ICategoryRepository Categories { get; private set; }
 
         public UnitOfWork(DataContext context, ILoggerFactory loggerFactory
-            , IConfiguration configuration)
+            , IConfiguration configuration, IMapper mapper)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("logs");
 
             Users = new UserRepository(context, _logger);
-            Posts = new PostRepository(context, _logger);
+            Posts = new PostRepository(context, _logger, mapper);
             Auth = new AuthRepository(configuration, context, _logger);
             Categories = new CategoryRepository(context, _logger);
         }

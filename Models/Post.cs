@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static Kensa.Common.Enum;
+using static CliverApi.Common.Enum;
 
 namespace CliverApi.Models
 {
@@ -20,6 +20,7 @@ namespace CliverApi.Models
 
         public int Id { get; set; }
         [MinLength(30)]
+        public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public PostStatus Status { get; set; }
         public string UserId { get; set; }
