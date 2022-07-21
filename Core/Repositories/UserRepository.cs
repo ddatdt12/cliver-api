@@ -68,5 +68,12 @@ namespace CliverApi.Core.Repositories
                 return null;
             }
         }
+
+        public async Task VerifyAccount(string email)
+        {
+            var user = await FindByEmail(email);
+            user.IsActived = true;
+            await _context.SaveChangesAsync();
+        }
     }
 }

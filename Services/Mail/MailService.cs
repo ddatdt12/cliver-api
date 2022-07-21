@@ -37,10 +37,10 @@ namespace CliverApi.Services
             {
                 MimeMessage mail = new MimeMessage();
                 mail.To.Add(MailboxAddress.Parse(user.Email));
-                mail.Subject = "Welcome mail";
+                mail.Subject = "[Cliver]Verification Email";
                 var builder = new BodyBuilder();
 
-                builder.HtmlBody = $@"Hello guys";
+                builder.HtmlBody = $"Verification Code <h1>{token}</h1>";
                 mail.Body = builder.ToMessageBody();
                 await this.SendMail(mail);
             }

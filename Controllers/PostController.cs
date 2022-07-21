@@ -29,12 +29,11 @@ namespace CliverApi.Controllers
         public async Task<IActionResult> Get()
         {
             var posts = await _unitOfWork.Posts.Find(includeProperties: "User").ToListAsync();
-
             var postDtos = _mapper.Map<IEnumerable<Post>, IEnumerable<PostDto>>(posts);
 
             return Ok(new
             {
-                data = postDtos
+                data = postDtos,
             });
         }
 
