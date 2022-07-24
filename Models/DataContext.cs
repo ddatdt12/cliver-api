@@ -13,6 +13,7 @@ namespace CliverApi.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();
+            modelBuilder.ApplyConfiguration(new PackageConfiguration());
         }
         public DbSet<User> Users => Set<User>();
         public DbSet<Post> Posts => Set<Post>();

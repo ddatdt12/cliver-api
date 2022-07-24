@@ -47,6 +47,7 @@ namespace CliverApi.Extensions
                 new string[]{}
                 }
             });
+
         }
         public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
         {

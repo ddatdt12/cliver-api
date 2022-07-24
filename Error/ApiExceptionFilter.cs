@@ -2,7 +2,7 @@ using CliverApi.Error;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-public class HttpResponseExceptionFilter : IActionFilter, IOrderedFilter
+public class ApiExceptionFilter : IActionFilter, IOrderedFilter
 {
     public int Order => int.MaxValue - 10;
 
@@ -10,7 +10,7 @@ public class HttpResponseExceptionFilter : IActionFilter, IOrderedFilter
 
     public void OnActionExecuted(ActionExecutedContext context)
     {
-        if (context.Exception is HttpResponseException httpResponseException)
+        if (context.Exception is ApiException httpResponseException)
         {
             context.Result = new ObjectResult(httpResponseException.Message)
             {

@@ -131,42 +131,6 @@ namespace CliverApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Category",
-                columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Graphics & Design" },
-                    { 2, "Digital Marketing" },
-                    { 3, "Writing & Translation" },
-                    { 4, "Video & Animation" },
-                    { 5, "Music & Audio" },
-                    { 6, "Programming & Tech" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Subcategory",
-                columns: new[] { "Id", "CategoryId", "Name" },
-                values: new object[,]
-                {
-                    { 1, 1, "Logo Design" },
-                    { 2, 1, "Brand Style Guides" },
-                    { 3, 1, "Game Art" },
-                    { 4, 1, "Illustration" },
-                    { 5, 1, "NFT Art" },
-                    { 6, 1, "Portraits & Caricatures" },
-                    { 7, 1, "Pattern Design" },
-                    { 8, 1, "Cartoons & Comics" },
-                    { 9, 6, "WordPress" },
-                    { 10, 6, "Website Builders & CMS" },
-                    { 11, 6, "Game Development" },
-                    { 12, 6, "Development for Streamers" },
-                    { 13, 6, "Web Programming" },
-                    { 14, 6, "E - Commerce Development" },
-                    { 15, 6, "Mobile Apps" },
-                    { 16, 6, "Desktop Applications" }
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Post_BasicPackageId",
                 table: "Post",

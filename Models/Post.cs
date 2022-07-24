@@ -14,9 +14,10 @@ namespace CliverApi.Models
             Images = String.Empty;
             Subcategory = null!;
             UserId = null!;
-            BasicPackage = null!;
             HasOfferPackages = false;
+            Packages = new List<Package>();
         }
+
 
         public int Id { get; set; }
         [MinLength(30)]
@@ -32,9 +33,7 @@ namespace CliverApi.Models
         public string? Video { get; set; }
         public string? Document { get; set; }
         public bool HasOfferPackages { get; set; }
-        public Package? BasicPackage { get; set; }
-        public Package? StandardPackage { get; set; }
-        public Package? PremiumPackage { get; set; }
+        public ICollection<Package> Packages { get; set; }
         public DateTime? DeletedAt { get; set; }
     }
 }

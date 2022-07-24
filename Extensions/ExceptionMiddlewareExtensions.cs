@@ -21,13 +21,13 @@ namespace CliverApi.Extensions
                     {
                       logger.LogError($"Something went wrong: {contextFeature.Error}");
 
-                      var errorDetail = contextFeature.Error as HttpResponseException;
+                      var errorDetail = contextFeature.Error as ApiException;
                       if (errorDetail != null)
                       {
                         context.Response.StatusCode = errorDetail.StatusCode;
                       }
                       await context.Response.WriteAsync(
-                        new HttpResponseException(contextFeature.Error.Message ?? "Internal Server Error.")
+                        new ApiException(contextFeature.Error.Message ?? "Internal Server Error.")
                         {
                           StatusCode = context.Response.StatusCode
                         }

@@ -38,7 +38,7 @@ namespace CliverApi.Controllers
             {
                 //throw new HttpResponseException("Not found", 404);
                 return NotFound(
-                    new HttpResponseException("Email or password is wrong")
+                    new ApiException("Email or password is wrong")
                     { StatusCode = 404 })
                     ;
             }
@@ -72,7 +72,7 @@ namespace CliverApi.Controllers
             var item = await _unitOfWork.Users.FindByEmail(user.Email);
             if (item != null)
             {
-                return BadRequest(new HttpResponseException("Email have already existed!!!", 400));
+                return BadRequest(new ApiException("Email have already existed!!!", 400));
             };
 
             var code = new Token { Value = GenerateCode(), ExpiredAt = DateTime.Now.AddMinutes(15), User = user };

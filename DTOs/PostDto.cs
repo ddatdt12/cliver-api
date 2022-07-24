@@ -11,10 +11,9 @@ namespace CliverApi.DTOs
             Subcategory = null!;
             Status = PostStatus.Draft;
             HasOfferPackages = false;
-            BasicPackage = null!;
+            Packages = new List<Package>();
         }
-
-        public int Id { get; set; }
+            public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string UserId { get; set; } = null!;
@@ -26,17 +25,8 @@ namespace CliverApi.DTOs
         public List<string> Images { get; set; } = new List<string>();
         public string? Video { get; set; }
         public string? Document { get; set; }
-
         public bool HasOfferPackages { get; set; }
-        
-        public int BasicPackageId { get; set; }
-        public Package BasicPackage { get; set; }
-        
-        public int? StandardPackageId { get; set; }
-        public Package? StandardPackage { get; set; }
-        
-        public int? PremiumPackageId { get; set; }
-        public Package? PremiumPackage { get; set; }
+        public ICollection<Package> Packages { get; set; }
         public DateTime? DeletedAt { get; set; }
     }
 

@@ -2,14 +2,14 @@
 
 namespace CliverApi.Error
 {
-  public class HttpResponseException : Exception
+  public class ApiException : Exception
   {
 
-    public HttpResponseException(string message = "Server Error") : base(message)
+    public ApiException(string message = "Server Error") : base(message)
     {
       StatusCode = 500;
     }
-    public HttpResponseException(string message = "Server Error", int statusCode = 500) : base(message)
+    public ApiException(string message = "Server Error", int statusCode = 500) : base(message)
     {
       StatusCode = statusCode;
     }

@@ -10,8 +10,33 @@ namespace CliverApi.DTOs
         public string? Title { get; set; } = string.Empty;
         public string? Description { get; set; }
         public int? SubcategoryId { get; set; }
-        public List<string>? Tags { get; set; }
-        public List<string>? Images { get; set; }
+
+        private int myVar;
+
+        public int MyProperty
+        {
+            get { return myVar; }
+            set { myVar = value; }
+        }
+
+        private List<string>? _tags { get; set; }
+        public List<string>? Tags
+        {
+            get { return _tags; }
+            set
+            {
+                _tags = value?.Select(s => s.Trim().Replace(";", "")).ToList();
+            }
+        }
+        public List<string>? _images { get; set; }
+        public List<string>? Images
+        {
+            get { return _images; }
+            set
+            {
+                _images = value?.Select(s => s.Trim().Replace(";", "")).ToList();
+            }
+        }
         public string? Video { get; set; }
         public string? Document { get; set; }
         public bool? HasOfferPackages { get; set; }

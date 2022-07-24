@@ -7,139 +7,261 @@ namespace CliverApi.Extensions
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasData(
-                   new Category
-                   {
-                       Id = 1,
-                       Name = "Graphics & Design",
-                   },
-                   new Category
-                   {
-                       Id = 2,
-                       Name = "Digital Marketing",
-                   },
-                   new Category
-                   {
-                       Id = 3,
-                       Name = "Writing & Translation",
-                   },
-                   new Category
-                   {
-                       Id = 4,
-                       Name = "Video & Animation",
-                   },
-                   new Category
-                   {
-                       Id = 5,
-                       Name = "Music & Audio",
-                   },
-                   new Category
-                   {
-                       Id = 6,
-                       Name = "Programming & Tech",
-                   }
-               );
+            var categories = @"Graphics & Design
+Digital Marketing
+Writing & Translation
+Video & Animation
+Music & Audio
+Programming & Tech
+Business
+Lifestyle
+Trending".Split("\n").Select((item, index) => new Category { Id = index + 1, Name = item.Trim().Replace("\r", "") });
+            modelBuilder.Entity<Category>().HasData(categories);
 
-            modelBuilder.Entity<Subcategory>().HasData(
-                new Subcategory
+            var subcategories = new[] {
+            new
+            {
+                values = @"Social Media Marketing
+                Social Media Advertising
+                Search Engine Optimization (SEO)
+                Local SEO
+                Marketing Strategy
+                Public Relations
+                Guest Posting
+                Video Marketing
+                Email Marketing
+                Web Analytics
+                Text Message Marketing
+                Crowdfunding
+                Marketing Advice
+                Search Engine Marketing (SEM)
+                Display Advertising
+                E-Commerce Marketing
+                Influencer Marketing
+                Community Management
+                Mobile App Marketing
+                Music Promotion
+                Book & eBook Marketing
+                Podcast Marketing
+                Affiliate Marketing
+                Other".Split("\n"),
+                categoryId = 1
+            },
+                new
                 {
-                    Id = 1,
-                    Name = "Logo Design",
-                    CategoryId = 1,
+                    values=@"Logo Design
+                    Brand Style Guides
+                    Fonts & TypographyNEW
+                    Business Cards & Stationery
+                    Game Art
+                    Graphics for Streamers
+                    Twitch Store
+                    Illustration
+                    NFT Art
+                    Pattern Design
+                    Portraits & Caricatures
+                    Cartoons & Comics
+                    Tattoo Design
+                    Storyboards
+                    Website Design
+                    App Design
+                    UX Design
+                    Landing Page Design
+                    Icon Design
+                    Social Media Design
+                    Email Design
+                    Web Banners
+                    Signage Design
+                    Packaging & Covers
+                    Packaging & Label Design
+                    Book Design
+                    Album Cover Design
+                    Podcast Cover Art
+                    Car Wraps".Split("\n"),
+                    categoryId = 2
                 },
-                new Subcategory
+                new
                 {
-                    Id = 2,
-                    Name = "Brand Style Guides",
-                    CategoryId = 1,
+                    values=@"Articles & Blog Posts
+            Translation
+            Proofreading & Editing
+            Resume Writing
+            Cover Letters
+            LinkedIn Profiles
+            Ad Copy
+            Sales Copy
+            Social Media Copy
+            Email Copy
+            Case Studies
+            Book & eBook Writing
+            Book Editing
+            Scriptwriting
+            Podcast Writing
+            Beta Reading
+            Creative Writing
+            Brand Voice & Tone
+            UX Writing
+            Speechwriting
+            eLearning Content Development
+            Technical Writing".Split("\n"),
+                    categoryId = 3
                 },
-                new Subcategory
+                new
                 {
-                    Id = 3,
-                    Name = "Game Art",
-                    CategoryId = 1,
-
+                    values=@"Video Editing
+Short Video Ads
+Whiteboard & Animated Explainers
+Character Animation
+Lyric & Music Videos
+Logo Animation
+Intros & Outros
+Visual Effects
+Subtitles & Captions
+Spokesperson Videos
+Unboxing Videos
+Animated GIFs".Split("\n"),
+                    categoryId = 4
                 },
-                new Subcategory
+                new
                 {
-                    Id = 4,
-                    Name = "Illustration",
-                    CategoryId = 1,
-
+                    values=@"Voice Over
+Producers & Composers
+Singers & Vocalists
+Mixing & Mastering
+Session Musicians
+Online Music Lessons
+Podcast Editing
+Songwriters
+Beat Making
+Audiobook Production
+Audio Ads Production
+Sound Design".Split("\n"),
+                    categoryId = 5
                 },
-                new Subcategory
+                new
                 {
-                    Id = 5,
-                    CategoryId = 1,
-                    Name = "NFT Art",
+                    values=@"WordPress
+Website Builders & CMS
+Game Development
+Development for Streamers
+Web Programming
+E-Commerce Development
+Mobile Apps
+Desktop Applications
+Chatbots
+Support & IT
+Online Coding Lessons
+Cybersecurity & Data Protection
+Electronics Engineering
+Convert Files
+User Testing
+QA & Review
+Blockchain & Cryptocurrency
+NFT Development
+Databases
+Data Processing
+Data Engineering
+Data Science
+Other
+".Split("\n"),
+                    categoryId = 6
                 },
-                new Subcategory
+                new
                 {
-                    Id = 6,
-                    Name = "Portraits & Caricatures",
-                    CategoryId = 1,
+                    values=@"Virtual Assistant
+E-Commerce Management
+Market Research
+Sales
+Customer Care
+CRM Management NEW
+ERP ManagementNEW
+Supply Chain Management
+Project Management
+Event ManagementNEW
+Game Concept Design
+Business Plans
+Financial Consulting
+Legal Consulting
+Business Consulting
+Presentations
+HR Consulting
+Career Counseling
+Data Entry
+Data Analytics
+Data Visualization
+Other".Split("\n"),
+                    categoryId = 7
                 },
-                new Subcategory
+                new
                 {
-                    Id = 7,
-                    Name = "Pattern Design",
-                    CategoryId = 1,
+                    values=@"Online Tutoring
+Gaming
+Astrology & Psychics
+Modeling & Acting
+Wellness
+Traveling
+Fitness Lessons
+Dance Lessons
+Life Coaching
+Greeting Cards & Videos
+Personal Stylists
+Cooking Lessons
+Craft Lessons
+Arts & Crafts
+Family & Genealogy
+Collectibles
+Other".Split("\n"),
+                    categoryId = 8
                 },
-                new Subcategory
+                new
                 {
-                    Id = 8,
-                    Name = "Cartoons & Comics",
-                    CategoryId = 1,
-                },
-                new Subcategory
-                {
-                    Id = 9,
-                    Name = "WordPress",
-                    CategoryId = 6,
-                },
-                new Subcategory
-                {
-                    Id = 10,
-                    Name = "Website Builders & CMS",
-                    CategoryId = 6,
-                },
-                new Subcategory
-                {
-                    Id = 11,
-                    Name = "Game Development",
-                    CategoryId = 6,
-                },
-                new Subcategory
-                {
-                    Id = 12,
-                    Name = "Development for Streamers",
-                    CategoryId = 6,
-                },
-                new Subcategory
-                {
-                    Id = 13,
-                    Name = "Web Programming",
-                    CategoryId = 6,
-                },
-                new Subcategory
-                {
-                    Id = 14,
-                    Name = "E - Commerce Development",
-                    CategoryId = 6,
-                },
-                new Subcategory
-                {
-                    Id = 15,
-                    Name = "Mobile Apps",
-                    CategoryId = 6,
-                },
-                new Subcategory
-                {
-                    Id = 16,
-                    Name = "Desktop Applications",
-                    CategoryId = 6,
+                    values=@"Dropshipping
+E-Commerce Marketing
+Game Development
+Discord Services
+NFT Services
+Architecture & Interior Design
+Data
+Resume Writing
+Search Engine Optimization (SEO)
+Character Modeling
+Character Animation
+Image Editing".Split("\n"),
+                    categoryId = 9
                 }
+            };
+
+            var listSubcategories = new List<Subcategory>();
+            foreach (var item in subcategories)
+            {
+                var kq = item.values.Select((v, index) => new Subcategory { Id = index + 1 + listSubcategories.Count(), Name = v.Replace("\r", "").Trim(), CategoryId = item.categoryId });
+                modelBuilder.Entity<Subcategory>().HasData(kq);
+                listSubcategories = listSubcategories.Concat(kq).ToList();
+
+            }
+
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                Name = "Test 1",
+                Email = "test@gmail.com",
+                Password = "123123123",
+                IsActived = true,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            },
+            new User
+            {
+                Name = "admin",
+                Email = "admin@admin.com",
+                Password = "123123123",
+                Type = Common.Enum.UserType.Admin,
+                IsActived = true,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            }
             );
+
         }
+
     }
 }

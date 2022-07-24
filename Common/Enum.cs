@@ -1,12 +1,25 @@
-﻿namespace CliverApi.Common
+﻿using System.Text.Json.Serialization;
+
+namespace CliverApi.Common
 {
     public static class Enum
     {
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public enum UserType
         {
             Admin,
             User
         }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public enum PackageType
+        {
+            Basic,
+            Standard,
+            Premium
+        }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public enum PostStatus
         {
             Draft,
@@ -14,6 +27,8 @@
             Active,
             Paused,
         }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public enum JobStatus
         {
             Created,
