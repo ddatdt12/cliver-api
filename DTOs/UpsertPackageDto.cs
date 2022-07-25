@@ -3,16 +3,15 @@ using static CliverApi.Common.Enum;
 
 namespace CliverApi.DTOs
 {
-    public class PackageDto
+    public class UpsertPackageDto
     {
-        public PackageDto()
+        public UpsertPackageDto()
         {
         }
         public int? Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public int PostId { get; set; }
-        public Post? Post { get; set; }
+        public int? PostId { get; set; }
         public int DeliveryTime { get; set; }
         public int? NumberOfPages { get; set; }
         public bool CanDesignCustomized { get; set; }
@@ -24,14 +23,14 @@ namespace CliverApi.DTOs
         public PackageType Type { get; set; }
     }
 
-    class PackageDtoEqualityComparer : IEqualityComparer<PackageDto>
+    class UpsertPackageDtoEqualityComparer : IEqualityComparer<UpsertPackageDto>
     {
-        public bool Equals(PackageDto? x, PackageDto? y)
+        public bool Equals(UpsertPackageDto? x, UpsertPackageDto? y)
         {
-            return x?.Id == y?.Id || x.Type == y.Type;
+            return x?.Id == y?.Id || x?.Type == y?.Type;
          }
 
-        public int GetHashCode(PackageDto obj)
+        public int GetHashCode(UpsertPackageDto obj)
         {
             return obj.Id.GetHashCode();
         }

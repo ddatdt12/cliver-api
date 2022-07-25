@@ -16,8 +16,8 @@ namespace CliverApi.Models
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public int PostId{ get; set; }
-        public Post? Post{ get; set; }
+        public int PostId { get; set; }
+        public Post? Post { get; set; }
         public int DeliveryTime { get; set; }
         public int? NumberOfPages { get; set; }
         public bool CanDesignCustomized { get; set; }
@@ -35,9 +35,13 @@ namespace CliverApi.Models
     {
         public void Configure(EntityTypeBuilder<Package> builder)
         {
+            builder.HasIndex(e => e.Type);
             builder
                 .Property(b => b.IsAvailable)
                 .HasDefaultValue(true);
+            builder
+                .Property(b => b.Type)
+                .HasDefaultValue(PackageType.Basic);
         }
     }
 }

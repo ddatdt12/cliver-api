@@ -40,8 +40,6 @@ namespace CliverApi.DTOs
         public string? Video { get; set; }
         public string? Document { get; set; }
         public bool? HasOfferPackages { get; set; }
-        public PackageDto? BasicPackage { get; set; } = null!;
-        public PackageDto? StandardPackage { get; set; }
-        public PackageDto? PremiumPackage { get; set; }
+        public ICollection<UpsertPackageDto>? Packages { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static CliverApi.Common.Enum;
 
@@ -35,5 +37,12 @@ namespace CliverApi.Models
         public bool HasOfferPackages { get; set; }
         public ICollection<Package> Packages { get; set; }
         public DateTime? DeletedAt { get; set; }
+    }
+    public class PostConfiguration : IEntityTypeConfiguration<Post>
+    {
+        public void Configure(EntityTypeBuilder<Post> builder)
+        {
+            builder.HasIndex(e => e.Title);
+        }
     }
 }

@@ -242,22 +242,24 @@ Image Editing".Split("\n"),
 
             modelBuilder.Entity<User>().HasData(new User
             {
+                Id="53f891d8-bd32-40cf-a30c-04f2d5ecf164",
                 Name = "Test 1",
                 Email = "test@gmail.com",
                 Password = "123123123",
                 IsActived = true,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
+                CreatedAt =  new DateTime(2022, 7, 25),
+                UpdatedAt =  new DateTime(2022, 7, 25)
             },
             new User
             {
+                Id="fedb88e2-decb-45a2-a0f1-8edc92b0b918",
                 Name = "admin",
                 Email = "admin@admin.com",
                 Password = "123123123",
                 Type = Common.Enum.UserType.Admin,
                 IsActived = true,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
+                CreatedAt = new DateTime(2022, 7, 25),
+                UpdatedAt =  new DateTime(2022, 7, 25),
             }
             );
 

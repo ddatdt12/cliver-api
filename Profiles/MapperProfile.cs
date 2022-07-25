@@ -15,8 +15,10 @@ public class MapperProfile : Profile
 
         CreateMap<Package, PackageDto>();
         CreateMap<PackageDto, Package>();
+        CreateMap<IEnumerable<PackageDto>, IEnumerable<Package>>();
 
         CreateMap<UpdatePostDto, Post>()
+            .ForMember(d => d.Packages, o => o.Ignore())
             .ForMember(d => d.Tags, options => options.MapFrom(p => p.Tags != null ? string.Join(';', p.Tags).Replace(" ", "") : null))
             .ForMember(d => d.Images, options => options.MapFrom(p => p.Images != null ? string.Join(';', p.Images).Replace(" ", "") : null))
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) =>  srcMember != null ));

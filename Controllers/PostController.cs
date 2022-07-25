@@ -72,8 +72,7 @@ namespace CliverApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] UpdatePostDto Post)
         {
-            await _unitOfWork.Posts.Update(id, Post);
-            await _unitOfWork.CompleteAsync();
+           await _unitOfWork.Posts.Update(id, Post);
             return NoContent();
         }
 

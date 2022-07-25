@@ -14,6 +14,7 @@ namespace CliverApi.Models
         {
             modelBuilder.Seed();
             modelBuilder.ApplyConfiguration(new PackageConfiguration());
+            modelBuilder.ApplyConfiguration(new PostConfiguration());
         }
         public DbSet<User> Users => Set<User>();
         public DbSet<Post> Posts => Set<Post>();
