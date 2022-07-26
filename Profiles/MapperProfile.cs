@@ -15,7 +15,8 @@ public class MapperProfile : Profile
 
         CreateMap<Package, PackageDto>();
         CreateMap<PackageDto, Package>();
-        CreateMap<IEnumerable<PackageDto>, IEnumerable<Package>>();
+        CreateMap<UpsertPackageDto, Package>();
+        //CreateMap<IEnumerable<PackageDto>, IEnumerable<Package>>();
 
         CreateMap<UpdatePostDto, Post>()
             .ForMember(d => d.Packages, o => o.Ignore())

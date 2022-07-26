@@ -28,7 +28,7 @@ namespace CliverApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var posts = await _unitOfWork.Posts.Find(includeProperties: "User").ToListAsync();
+            var posts = await _unitOfWork.Posts.Find().ToListAsync();
             var postDtos = _mapper.Map<IEnumerable<Post>, IEnumerable<PostDto>>(posts);
 
             return Ok(new
@@ -39,14 +39,12 @@ namespace CliverApi.Controllers
 
         // GET api/<PostController>/5
         [HttpGet("{id}")]
+        [Produces(typeof(ApiResponse<PostDto>))]
         public async Task<IActionResult> Get(int id)
         {
             var post = await _unitOfWork.Posts.FindById(id);
             PostDto postDto = _mapper.Map<PostDto>(post);
-            return Ok(new
-            {
-                data = postDto
-            });
+            return Ok(new ApiResponse<PostDto>(postDto, "Get post successfully"));
         }
 
         // POST api/<PostController>

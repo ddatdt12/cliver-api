@@ -11,7 +11,7 @@ namespace CliverApi.DTOs
             Subcategory = null!;
             Status = PostStatus.Draft;
             HasOfferPackages = false;
-            Packages = new List<Package>();
+            Packages = new List<PackageDto>();
         }
             public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
@@ -26,7 +26,7 @@ namespace CliverApi.DTOs
         public string? Video { get; set; }
         public string? Document { get; set; }
         public bool HasOfferPackages { get; set; }
-        public ICollection<Package> Packages { get; set; }
+        public ICollection<PackageDto> Packages { get; set; }
         public DateTime? DeletedAt { get; set; }
     }
 

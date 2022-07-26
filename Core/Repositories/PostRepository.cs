@@ -80,7 +80,7 @@ namespace CliverApi.Core.Repositories
                                .LoadAsync();
 
                         bool needSaveChanges = false;
-                        var basicPackage = postData.Packages?.Where(p => p.Type == PackageType.Standard).FirstOrDefault();
+                        var basicPackage = postData.Packages?.Where(p => p.Type == PackageType.Basic).FirstOrDefault();
                         if (basicPackage != null)
                         {
                             needSaveChanges = true;
